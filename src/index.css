@@ -2,11 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer base{
+  @font-face{
+    font-family: 'OPTIHollandseLight-Agency';
+    src: url(https://fonts.cdnfonts.com/css/optihollandselight-agency);
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal;
+  }
+  @font-face{
+    font-family: 'OPTIHollandseMediumAgency';
+    src: url(https://fonts.cdnfonts.com/css/optihollandselight-agency);
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal;
+  }
+  @font-face{
+    font-family: 'OPTIHollandseSemiBoldAg';
+    src: url(https://fonts.cdnfonts.com/css/optihollandselight-agency);
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+  }
+  @font-face{
+    font-family: 'OPTIHollandseBoldAgency';
+    src: url(https://fonts.cdnfonts.com/css/optihollandselight-agency);
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+  }
+}
+
 body {
   margin: 0;
-  font-family: 'OPTIHollandseLight-Agency', sans-serif;
-
-                
+  font-family: 'OPTIHollandseLight-Agency', sans-serif;        
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
