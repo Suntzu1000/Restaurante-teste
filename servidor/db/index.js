@@ -1,8 +1,10 @@
 const moongose = require('mongoose')
 
-moongose.connect('mongodb+srv://db_restaurante:<password>@restaurante.mxub1fi.mongodb.net/?retryWrites=true&w=majority', {
-    useNewUrlParser: true, useUnifiedTopology: true
-}).then(() => console.log('MongoDb Conectado!')).catch((err) => console.log(err))
+moongose
+    .connect('mongodb://localhost:27017/food-ordering', {useNewUrlParser: true})
+    .catch(e => {
+        console.log('Erro de conexão!', e.message)
+})
 
 const db = moongose.connect
 

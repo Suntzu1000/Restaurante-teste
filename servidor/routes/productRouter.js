@@ -9,6 +9,8 @@ router.get('/products', async (req, res) => {
         const products = await Product.find()
         res.status(200).send({data: products})
     } catch (err){
-        res.status
+        res.status(400).send({error: err})
     }
 })
+
+module.exports = router
