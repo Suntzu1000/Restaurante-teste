@@ -1,5 +1,6 @@
 const moongose = require('mongoose')
 
+moongose.set('strictQuery', false)
 moongose
     .connect('mongodb://localhost:27017/food-ordering', {useNewUrlParser: true})
     .catch(e => {

@@ -6,6 +6,7 @@ const db = require('./db')
 
 
 const app = express()
+const productRouter = require('./routes/productRouter')
 
 var corOptions = {
     origin: 'http://localhost:3000'
@@ -25,3 +26,4 @@ const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
     console.log(`Servidor está rodando na porta ${PORT}`)
 })
+app.use('/api/', productRouter)
