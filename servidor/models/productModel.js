@@ -1,5 +1,5 @@
-const moongose = require('moongose')
-const Schema = moongose.Schema 
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema 
 
 const CategorySchema = new Schema(
     {
@@ -18,4 +18,4 @@ const ProductSchema = new Schema (
     }
 )
 
-module.exports = moongose.model('Product', ProductSchema)
+module.exports = mongoose.model('Product', ProductSchema)
