@@ -3,7 +3,7 @@ const MongoClient = require('mongodb').MongoClient
 const _ = require('lodash')
 
 async function main() {
-    const uri = 'mongodb://localhost://27017'
+    const uri = "mongodb://localhost://27017"
     const client = new MongoClient(uri)
 
     try{
@@ -12,8 +12,8 @@ async function main() {
         const productsCollection = client.db('food-ordering').collection('products')
         const categoriesCollection = client.db('food-ordering').collection('categories')
 
-        productsCollection.drop()
-        let categories = ['Breakfast', 'Lunch', 'Dinner', 'Drinks'].map((category) => {return {name: category}})
+       /* productsCollection.drop()*/
+        let categories = ['breakfast', 'lunch', 'dinner', 'drinks'].map((category) => {return {name: category}})
         await categoriesCollection.insertMany(categories)
 
         let imageUrls = [
@@ -43,3 +43,5 @@ async function main() {
         await client.close()
     }
 }
+
+main()

@@ -16,7 +16,7 @@ app.use(cors(corOptions))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
-/*db.on('error', console.error.bind(console, 'MongoDB, erro de Conexão!:'))*/
+db.on('error', console.error.bind(console, 'MongoDB, erro de Conexão!:'))
 
 app.get('/', (req, res) => {
     res.json({message: 'Bem vindo ao Restaurante BR'})
