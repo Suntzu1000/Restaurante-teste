@@ -12,7 +12,7 @@ async function main() {
         const productsCollection = client.db('food-ordering').collection('products')
         const categoriesCollection = client.db('food-ordering').collection('categories')
 
-       /* productsCollection.drop()*/
+       productsCollection.drop()
         let categories = ['breakfast', 'lunch', 'dinner', 'drinks'].map((category) => {return {name: category}})
         await categoriesCollection.insertMany(categories)
 
@@ -28,10 +28,10 @@ async function main() {
             let newProduct = {
                 name: faker.commerce.productName(),
                 adjective: faker.commerce.productAdjective(),
-                description: faker.commerce.productDescription,
+                description: faker.commerce.productDescription(),
                 price: faker.commerce.price(),
                 category: _.sample(categories),
-                imageUrls: _.sample(imageUrls)
+                imageUrl: _.sample(imageUrls)
             }
             
             products.push(newProduct)

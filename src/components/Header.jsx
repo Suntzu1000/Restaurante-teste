@@ -3,7 +3,7 @@ import CartIcon from '../assets/icons/cart.svg'
 import { Link } from 'react-router-dom'
 import Logo from '../assets/images/logo-editor.svg'
 
-const Header = () => {
+const Header = ({cartCount}) => {
     return (
         <>
             <nav id='header' className='bg-black text-white'>
@@ -19,8 +19,9 @@ const Header = () => {
                         <Link to='#about' className='text-xl'>Sobre Nós</Link>
                     </div>
                     <div className='flex items-center justify-center space-x-4'>
-                        <Link to='/cart'>
+                        <Link to='/cart' className='mr-4 relative '>
                             <img src={CartIcon} alt="cart" />
+                            {cartCount > 0 ? <div className='rounded-full bg-yellow-400 text-white inline-flex justify-center items-center w-full absolute -top-1 -right-1  ' >{cartCount}</div> : null}
                         </Link>
                         <Link to='/login'>Conecte-se</Link>
                         <Link to='/register'>Inscrever-se</Link>
