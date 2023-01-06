@@ -2,15 +2,19 @@ import React from 'react'
 import { Tabs } from '../../components/Tabs'
 import Button from '../../components/elements/Button'
 import { useSelector } from 'react-redux'
-import { selectAllProducts } from '../../store/menu/productsSlice'
+import { cartProducts } from '../../store/cart/cartSlice'
 import useTabSwitch from '../../hooks/useTabSwitch'
 import {ReactComponent as ArrowRightSvg} from '../../assets/icons/arrow-right-long-svgrepo-com.svg'
+import { AddressForm } from '../../components/AddressForm'
+import { ProductsSummary } from '../../components/ProductsSummary'
+
 const Cart = () => {
-  const cart = useSelector(selectAllProducts)
+  const cart = useSelector(cartProducts)
   const tabs = ['Resumo', 'Delivery', 'Pagamento']
   const [currentTab, handleTabSwitch] = useTabSwitch(tabs, 'Resumo')
+  console.log(cart);
 
-  if(!cart || cart.products.length === 0  ){
+  if(!cart || cart.length === 0  ){
     return (
       <div className="bg-white h-full text-black flex  justify-center p-4">
           <h1>Seu carrinho está vazio!</h1>
@@ -18,9 +22,19 @@ const Cart = () => {
     )
   }
   return (
-    <>
-    Carrinho
-    </>
+    <div className="bg-white h-screen text-black mx-automt-2 border-gray-200 p-4 md:m-2/3 
+    rounded lg shadow-md sm:p-6 lg:p-8 ">
+      <Tabs list={tabs } onTabSwitch={handleTabSwitch} active={currentTab}/>
+      <div className={` tabs ${currentTab !== 'Resumo' ? 'hidden' : '' } `}>
+          <ProductsSummary/>
+      </div>
+      <div className={` tabs ${currentTab !== 'Delivery' ? 'hidden' : '' } `}>
+        <AddressForm onTabSwitch={handleTabSwitch}/>
+      </div>
+      <div className={` tabs ${currentTab !== 'Pagamento' ? 'hidden' : '' } `}>
+        Pagamento
+      </div>
+    </div>
   )
 }
 
