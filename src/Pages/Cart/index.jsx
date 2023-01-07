@@ -4,10 +4,10 @@ import Button from '../../components/elements/Button'
 import { useSelector } from 'react-redux'
 import { cartProducts } from '../../store/cart/cartSlice'
 import useTabSwitch from '../../hooks/useTabSwitch'
-import {ReactComponent as ArrowRightSvg} from '../../assets/icons/arrow-right-long-svgrepo-com.svg'
+/*import {ReactComponent as ArrowRightSvg} from '../../assets/icons/arrow-right-long-svgrepo-com.svg'*/
 import { AddressForm } from '../../components/AddressForm'
 import { ProductsSummary } from '../../components/ProductsSummary'
-import PaymentForm, {StripeWrapper} from '../../components/PaymentForm'
+import  {StripeWrapper} from '../../components/PaymentForm'
  
 
 const Cart = () => {
