@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { setEndereco } from '../store/userInfo/addressSlice'
 
 export const AddressForm = ({onTabSwitch}) => {
-    const {register, handleSubmit} = useForm()
+    const {register, handleSubmit, formState: {errors}} = useForm()
     const dispatch = useDispatch()
 
     const onSubmit = (data) => {
@@ -20,12 +20,13 @@ export const AddressForm = ({onTabSwitch}) => {
         <div className='mb-4'>
             <label htmlFor="endereço" className='block mb-2 text-sm font-bold text-gray-700' >Endereço</label>
             <input 
-            {...register('endereco')}
+            {...register('endereco', {required: true})}
             className='w-full px-3 mb-3 text-sm leading-10 text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
             id='endereco'
             type="text"
             placeholder='Endereço'
              /> 
+             {errors.address && <span className="text-red-500">Este campo é obrigatório</span>}
         </div>
         <div className="mb-4 md-flex md:justify-between">
             <div className="mb-4 md:mr-4 md:mb-0 flex-1 ">

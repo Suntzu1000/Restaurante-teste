@@ -9,7 +9,7 @@ const initialState = {
 export const productsSlice = createSlice({
     name: 'products',
     initialState,
-    reducers: { },
+    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
             state.status = 'fulfilled'

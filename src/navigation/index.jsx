@@ -8,7 +8,7 @@ import PaymentSuccess from '../Pages/PaymentSuccess/index'
 import Register from '../Pages/Register'
 import { useSelector } from 'react-redux'
 import { cartProducts } from '../store/cart/cartSlice'
-
+import { Footer } from '../components/Footer'
 const Navigation = () => {
     const ProductsInCart = useSelector(cartProducts)
     return (
@@ -22,6 +22,7 @@ const Navigation = () => {
                 <Route path='/cart' element={<Cart/>} />
                 <Route path='/payment-success' element={<PaymentSuccess/>} />
             </Routes>
+            <Footer/>
         </BrowserRouter>
     )
 }

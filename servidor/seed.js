@@ -13,13 +13,15 @@ async function main() {
         const categoriesCollection = client.db('food-ordering').collection('categories')
 
        productsCollection.drop()
-        let categories = ['breakfast', 'lunch', 'dinner', 'drinks'].map((category) => {return {name: category}})
+        let categories = ['Café da Manhâ', 'Almoço', 'Jantar', 'Lanche'].map((category) => {return {name: category}})
         await categoriesCollection.insertMany(categories)
 
         let imageUrls = [
             'https://res.cloudinary.com/dlv0lekro/image/upload/v1657056151/food-ordering-app/1_mfgcb5.png',
             'https://res.cloudinary.com/dlv0lekro/image/upload/v1657056151/food-ordering-app/2_afbbos.png',
             'https://res.cloudinary.com/dlv0lekro/image/upload/v1657056151/food-ordering-app/3_iawvqb.png',
+            'https://res.cloudinary.com/dl1zyi6uk/image/upload/v1673352477/samples/food/pot-mussels.jpg',
+            'https://res.cloudinary.com/dl1zyi6uk/image/upload/v1673352477/samples/food/fish-vegetables.jpg'
            
         ]
 

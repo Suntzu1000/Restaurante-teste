@@ -2,16 +2,18 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
+
 const db = require('./db')
 
+const app = express()
+const productRouter = require('./routes/productRouter')
+const userRouter = require('./routes/productRouter');
+
+const Order = require('./models/orderModel')
 const env = require('dotenv').config({path: '../.env'})
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
-const app = express()
-const productRouter = require('./routes/productRouter')
-
-const Order = require('./models/orderModel')
 
 var corOptions = {
     origin: 'http://localhost:3000'
@@ -33,11 +35,13 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(cors(corOptions))
 app.use(
     express.json({
-        verify: function (req, res, buf ){
-            req.rawBody = buf.toString()
-        }
-    })
-)
+        verify: function (req, res, buf) {
+            if (req.originalUrl.startsWith('/webhook')) {
+              req.rawBody = buf.toString();
+            }
+          },
+        })
+      );
 
 app.post( '/webhook', async (req, res) => {
     let data, eventType;
@@ -61,7 +65,7 @@ app.post( '/webhook', async (req, res) => {
         data = req.body.data
         eventType = req.body.type
     }
-    if(eventType === 'payment_intent.payment_succeeded'){
+    if(eventType === 'payment_intent.succeeded'){
         console.log('Pagamento Capturado!');
     } else if (eventType === 'payment_intent.payment_failed'){
         console.log('Pagamento Falhou.');
@@ -81,10 +85,12 @@ app.listen(PORT, () => {
     console.log(`Servidor está rodando na porta ${PORT}`)
 })
 app.use('/api/', productRouter)
+app.use('/api/', userRouter)
 
 app.post('/create-payment-intent', async(req, res) =>{
     try{
         const {orderItems, shippingAddress, userId} = req.body
+        console.log(shippingAddress);
 
         const totalPrice = calculateOrderAmount(orderItems)
 
@@ -98,7 +104,7 @@ app.post('/create-payment-intent', async(req, res) =>{
             totalPrice,
             taxPrice,
             shippingPrice,
-            user: ''
+            userId: ''
         })
 
         //await order.save()

@@ -21,7 +21,6 @@ const Menu = () => {
 
   const onTabSwitch = (newActiveTab) => {
       setActiveTab(newActiveTab)
-      let newIndex = 0
       let categories = products.products.map((product) => product.name.name)
       let index = categories.findIndex(category => newActiveTab === category )
       console.log(index);
@@ -50,7 +49,7 @@ const Menu = () => {
           }
           <div className=' flex flex-row  mx-3 '>
           {
-            products.products && products.products[0].products.map((product, index) => {
+            products.products && products.products[activeTabIndex].products.map((product, index) => {
               return (
                 <ProductDetailCard key={index} product={product} onAddProduct={onAddProduct} />
               )

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { clearCart, cartProducts } from '../store/cart/cartSlice'
 import { getAddress, clearEndereco } from '../store/userInfo/addressSlice'
 import {useNavigate} from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Button from './elements/Button'
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY)

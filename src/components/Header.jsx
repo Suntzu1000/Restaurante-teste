@@ -2,8 +2,38 @@ import React from 'react'
 import CartIcon from '../assets/icons/cart.svg'
 import { Link } from 'react-router-dom'
 import Logo from '../assets/images/logo-editor.svg'
+import { useNavigate } from 'react-router-dom'
+import Button from './elements/Button'
+import { useState, useEffect } from 'react'
+
 
 const Header = ({cartCount}) => {
+    const Navigate = useNavigate()
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+    const handleLogout = () => {
+        sessionStorage.removeItem('Auth token')
+        sessionStorage.removeItem('User Id')
+        window.dispatchEvent(new Event("storage"))
+        Navigate('/')
+
+    }
+
+    useEffect(() => {
+        const checkAuth = () => {
+            const token = sessionStorage.getItem('Auth token')
+            if(token) {
+                setIsLoggedIn(true)
+            } else {
+                setIsLoggedIn(false)
+            }
+        } 
+        window.addEventListener('storage', checkAuth)
+
+        return() => {
+            window.removeEventListener('storage', checkAuth)
+        }
+    }, [])
     return (
         <>
             <nav id='header' className='bg-black text-white'>
@@ -23,8 +53,16 @@ const Header = ({cartCount}) => {
                             <img src={CartIcon} alt="cart" />
                             {cartCount > 0 ? <div className='rounded-full bg-yellow-400 text-white inline-flex justify-center items-center w-full absolute -top-1 -right-1  ' >{cartCount}</div> : null}
                         </Link>
-                        <Link to='/login'>Conecte-se</Link>
-                        <Link to='/register'>Inscrever-se</Link>
+                        {
+                            isLoggedIn ? 
+                            <Button onClick={handleLogout}>Sair</Button> : 
+                            (<>
+                                <Link to='/login'>Conecte-se</Link>
+                                <Link to='/register'>Inscrever-se</Link>
+                             </>
+                            )
+                        }
+                        
                     </div>
                 </div>
             </nav>
