@@ -38,7 +38,7 @@ async function main() {
             
             products.push(newProduct)
         }
-        await productsCollection.inserTMany()
+        await productsCollection.inserTMany(products)
     } catch(e) {
         console.error(e)
     }finally {

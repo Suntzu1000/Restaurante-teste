@@ -46,7 +46,7 @@ const Header = ({cartCount}) => {
                     </div>
                     <div className="nav-menu-wrapper flex items-center justify-between space-x-10" >
                         <Link to='/' className='text-xl'>Página Inicial</Link>
-                        <Link to='#about' className='text-xl'>Sobre Nós</Link>
+                       <a href="https://meu-portfolio-livid.vercel.app/" target="_blank" rel="noopener noreferrer" className='text-xl'>Sobre Nós</a>
                     </div>
                     <div className='flex items-center justify-center space-x-4'>
                         <Link to='/cart' className='mr-4 relative '>

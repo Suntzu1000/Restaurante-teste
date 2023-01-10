@@ -104,7 +104,7 @@ app.post('/create-payment-intent', async(req, res) =>{
             totalPrice,
             taxPrice,
             shippingPrice,
-            userId: ''
+            user: ''
         })
 
         //await order.save()
